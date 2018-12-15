@@ -1,11 +1,8 @@
 module ApplicationHelper
 
-  def full_title(page_title = '')
+  def full_title(page_title = yield(:title))
     base_title = "Bookshelf App"
-    if page_title.empty?
-      base_title
-    else
-      page_title + " | " + base_title
-    end
+    return base_title if page_title.empty?
+    "#{page_title} | #{base_title}"
   end
 end
