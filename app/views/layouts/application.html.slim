@@ -1,0 +1,56 @@
+doctype html
+html lang="ja"
+  head
+    title == full_title(yield(:title))
+    == csrf_meta_tags
+    == csp_meta_tag
+    == stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    == javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    / ヘッダー
+    header.py-2
+      .container.text-center
+        h1 == link_to "Bookshelf App", root_url
+    / ナビバー
+    nav.navbar.navbar-dark.bg-dark.navbar-expand.sticky-top
+      / サブコンポーネント
+      .container
+        / ブランド
+        == link_to root_url, class: "navbar-brand" do
+          | Bookshelf App
+        / 切り替えボタン
+        button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbar-content"
+          | span.navbar-toggler-icon
+        / ナビゲーション
+        .collapse.navbar-collapse id="navbar-content"
+          ul.navbar-nav.mr-auto
+            li.navbar-item
+              == link_to root_url, class: "nav-link" do
+                | Home
+            li.navbar-item
+              == link_to '#', class: "nav-link" do
+                | Users
+            li.navbar-item
+              == link_to static_pages_about_url, class: "nav-link" do
+                | About
+            li.navbar-item.dropdown
+              == link_to '#', class: "nav-link dropdown-toggle" do
+                | Account
+              .dropdown-menu
+                == link_to  '#', class: "dropdown-item" do
+                  | Profile
+                == link_to '#', class: "dropdown-item" do
+                  | Setting
+                == link_to '#', class: "dropdown-item" do
+                  | Log out
+    / メイン
+    main
+      == yield
+    / フッター
+    footer
+      li.navbar-item
+        == link_to static_pages_help_url, class: "nav-link" do
+          | Help
+      li.navbar-item
+        == link_to static_pages_contact_url, class: "nav-link" do
+          | Contact
