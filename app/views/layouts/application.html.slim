@@ -6,6 +6,8 @@ html lang="ja"
     == csp_meta_tag
     == stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     == javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    / [if IE]
+      javascript: src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"
   body
     / ヘッダー
     header.py-2
@@ -54,3 +56,4 @@ html lang="ja"
       li.navbar-item
         == link_to static_pages_contact_url, class: "nav-link" do
           | Contact
+    / javascript: 
