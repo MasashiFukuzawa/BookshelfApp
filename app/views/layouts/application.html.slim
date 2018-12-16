@@ -8,38 +8,40 @@ html lang="ja"
     == javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     / [if IE]
       javascript: src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"
-  body
+  body.text-center
     / ヘッダー
     header.py-2
-      .container.text-center
-        h1 == link_to "Bookshelf App", root_url
+      div.container.text-center
+        h1 == link_to root_url, class: "text-dark"
+          | Bookshelf App
     / ナビバー
-    nav.navbar.navbar-dark.bg-dark.navbar-expand.sticky-top
+    nav.navbar.navbar-dark.bg-dark.navbar-expand-md.sticky-top
       / サブコンポーネント
-      .container
+      div.container
         / ブランド
         == link_to root_url, class: "navbar-brand" do
           | Bookshelf App
         / 切り替えボタン
-        button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbar-content"
-          | span.navbar-toggler-icon
+        button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbar-content" 
+          span.navbar-toggler-icon
         / ナビゲーション
-        .collapse.navbar-collapse id="navbar-content"
-          ul.navbar-nav.mr-auto
-            li.navbar-item
+        div.collapse.navbar-collapse#navbar-content
+          ul.navbar-nav.ml-5.mr-auto
+            li.navbar-item.active
               == link_to root_url, class: "nav-link" do
                 | Home
             li.navbar-item
-              == link_to '#', class: "nav-link" do
-                | Users
-            li.navbar-item
               == link_to static_pages_about_url, class: "nav-link" do
                 | About
+            li.navbar-item
+              == link_to '#', class: "nav-link" do
+                | Users
+          ul
             li.navbar-item.dropdown
               == link_to '#', class: "nav-link dropdown-toggle" do
                 | Account
-              .dropdown-menu
-                == link_to  '#', class: "dropdown-item" do
+              div.dropdown-menu
+                == link_to '#', class: "dropdown-item" do
                   | Profile
                 == link_to '#', class: "dropdown-item" do
                   | Setting
@@ -49,11 +51,23 @@ html lang="ja"
     main
       == yield
     / フッター
-    footer
-      li.navbar-item
-        == link_to static_pages_help_url, class: "nav-link" do
-          | Help
-      li.navbar-item
-        == link_to static_pages_contact_url, class: "nav-link" do
-          | Contact
+    footer.py-1.bg-dark.text-light
+      div.container.text-center
+        / ナビゲーション
+        ul.nav.justify-content-center.mb-3
+          li.navbar-item
+            == link_to root_url, class: "nav-link" do
+              | Home
+          li.navbar-item
+            == link_to static_pages_about_url, class: "nav-link" do
+              | About
+          li.navbar-item
+            == link_to static_pages_help_url, class: "nav-link" do
+              | Help
+          li.navbar-item
+            == link_to static_pages_contact_url, class: "nav-link" do
+              | Contact
+        p
+          small 
+            | Copyright &copy; Masashi Fukuzawa, All Rights Reserved.
     / javascript: 
