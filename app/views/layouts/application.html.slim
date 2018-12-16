@@ -8,66 +8,63 @@ html lang="ja"
     == javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     / [if IE]
       javascript: src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"
-  body.text-center
+  body
     / ヘッダー
     header.py-2
-      div.container.text-center
-        h1 == link_to root_url, class: "text-dark"
-          | Bookshelf App
-    / ナビバー
-    nav.navbar.navbar-dark.bg-dark.navbar-expand-md.sticky-top
-      / サブコンポーネント
-      div.container
-        / ブランド
-        == link_to root_url, class: "navbar-brand" do
-          | Bookshelf App
-        / 切り替えボタン
-        button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbar-content" 
-          span.navbar-toggler-icon
-        / ナビゲーション
-        div.collapse.navbar-collapse#navbar-content
-          ul.navbar-nav.ml-5.mr-auto
-            li.navbar-item.active
-              == link_to root_url, class: "nav-link" do
-                | Home
-            li.navbar-item
-              == link_to static_pages_about_url, class: "nav-link" do
-                | About
-            li.navbar-item
-              == link_to '#', class: "nav-link" do
-                | Users
-          ul
-            li.navbar-item.dropdown
-              == link_to '#', class: "nav-link dropdown-toggle" do
-                | Account
-              div.dropdown-menu
-                == link_to '#', class: "dropdown-item" do
-                  | Profile
-                == link_to '#', class: "dropdown-item" do
-                  | Setting
-                == link_to '#', class: "dropdown-item" do
-                  | Log out
+      / ナビバー
+      nav.navbar.navbar-dark.bg-dark.navbar-expand-md.sticky-top
+        / サブコンポーネント
+        div.container
+          / ブランド
+          == link_to root_url, class: "navbar-brand" do
+            | Bookshelf App
+          / 切り替えボタン
+          button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbar-content" 
+            span.navbar-toggler-icon
+          / ナビゲーション
+          div.collapse.navbar-collapse#navbar-content
+            ul.navbar-nav.ml-5.mr-auto
+              li.navbar-item.active
+                == link_to root_url, class: "nav-link" do
+                  | Home
+              li.navbar-item
+                == link_to static_pages_about_url, class: "nav-link" do
+                  | About
+              li.navbar-item
+                == link_to '#', class: "nav-link" do
+                  | Users
+            ul.navbar-nav.text-light.ml-5
+              li.navbar-item.dropdown
+                == link_to '#', class: "nav-link dropdown-toggle" 'data-toggle': 'dropdown' do
+                  | Account
+                div.dropdown-menu
+                  == link_to '#', class: "dropdown-item" do
+                    | Profile
+                  == link_to '#', class: "dropdown-item" do
+                    | Setting
+                  == link_to '#', class: "dropdown-item" do
+                    | Log out
     / メイン
     main
       == yield
     / フッター
-    footer.py-1.bg-dark.text-light
+    footer.py-1.bg-dark
       div.container.text-center
         / ナビゲーション
         ul.nav.justify-content-center.mb-3
           li.navbar-item
-            == link_to root_url, class: "nav-link" do
+            == link_to root_url, class: "nav-link text-light" do
               | Home
           li.navbar-item
-            == link_to static_pages_about_url, class: "nav-link" do
+            == link_to static_pages_about_url, class: "nav-link text-light" do
               | About
           li.navbar-item
-            == link_to static_pages_help_url, class: "nav-link" do
+            == link_to static_pages_help_url, class: "nav-link text-light" do
               | Help
           li.navbar-item
-            == link_to static_pages_contact_url, class: "nav-link" do
+            == link_to static_pages_contact_url, class: "nav-link text-light" do
               | Contact
-        p
-          small 
+        p.
+          small.text-light
             | Copyright &copy; Masashi Fukuzawa, All Rights Reserved.
     / javascript: 
