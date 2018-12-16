@@ -1,21 +1,65 @@
 section.py-2
-  div.container.bg-light.w-75
-    div.row
-      div.col-md-4
-        img.img-fluid src="app/assets/images/ProfileImg.jpg" alt="profile-img"
-      div.col-md-8
-        p 名前
-        p ◯冊登録
-        p フォロー X人　／ フォロワーY人
-        button フォローする
+  .container.py-3
+    .row
+      .card.mx-auto.text-center
+        == image_tag "ProfileImg.jpg", class: "card-img-top imag-fluid img-thumbnail"
+        .card-body
+          h4.card-title Masashi
+          p.card-subtitle
+            | 登録冊数：10冊
+            br
+            | フォロー50人 フォロワー50人
+          button.btn.btn-primary.mt-2 フォローする
 
 section.py-2
-  div.container
+  .container
 section.py-2
-  div.container
-    div.row
-      h1 本１
-    div.row
-      h1 本２
-    div.row
-      h1 本３
+  .container.text-center
+    .row
+      .col
+        h2.bg-primary
+          | Book
+          br
+          | Evaluation
+    .row
+      .col
+        h2.bg-secondary
+          | Book
+          br
+          | Evaluation
+    .row
+      .col
+        h2.bg-success
+          | Book
+          br
+          | Evaluation
+    .row
+      .col
+        h2.bg-danger
+          | Book
+          br
+          | Evaluation
+    .row
+      .col
+        h2.bg-warning
+          | Book
+          br
+          | Evaluation
+    .row
+      .col
+        h2.bg-info
+          | Book
+          br
+          | Evaluation
+    .row
+      .col
+        h2.bg-light
+          | Book
+          br
+          | Evaluation
+    .row
+      .col
+        h2.bg-dark
+          | Book
+          br
+          | Evaluation

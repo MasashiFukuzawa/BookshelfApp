@@ -34,8 +34,14 @@ html lang="ja"
                 == link_to '#', class: "nav-link" do
                   | Users
             ul.navbar-nav.text-light.ml-5
+              li.navbar-item
+                == link_to '#', class: "nav-link" do
+                  | Sign up
+              li.navbar-item
+                == link_to '#', class: "nav-link" do
+                  | Log in
               li.navbar-item.dropdown
-                == link_to '#', class: "nav-link dropdown-toggle" 'data-toggle': 'dropdown' do
+                = link_to '#', 'data-toggle': 'dropdown', class: "nav-link dropdown-toggle" do
                   | Account
                 div.dropdown-menu
                   == link_to '#', class: "dropdown-item" do
