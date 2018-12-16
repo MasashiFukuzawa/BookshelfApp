@@ -1,0 +1,41 @@
+/ ヘッダー
+header.py-2
+  / ナビバー
+  nav.navbar.navbar-dark.bg-dark.navbar-expand-md.sticky-top
+    / サブコンポーネント
+    div.container
+      / ブランド
+      == link_to root_path, class: "navbar-brand" do
+        | Bookshelf App
+      / 切り替えボタン
+      button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbar-content" 
+        span.navbar-toggler-icon
+      / ナビゲーション
+      div.collapse.navbar-collapse#navbar-content
+        ul.navbar-nav.ml-5.mr-auto
+          li.navbar-item.active
+            == link_to root_path, class: "nav-link" do
+              | Home
+          li.navbar-item
+            == link_to about_path, class: "nav-link" do
+              | About
+          li.navbar-item
+            == link_to '#', class: "nav-link" do
+              | Users
+        ul.navbar-nav.text-light.ml-5
+          li.navbar-item
+            == link_to '#', class: "nav-link" do
+              | Sign up
+          li.navbar-item
+            == link_to '#', class: "nav-link" do
+              | Log in
+          li.navbar-item.dropdown
+            = link_to '#', 'data-toggle': 'dropdown', class: "nav-link dropdown-toggle" do
+              | Account
+            div.dropdown-menu
+              == link_to '#', class: "dropdown-item" do
+                | Profile
+              == link_to '#', class: "dropdown-item" do
+                | Setting
+              == link_to '#', class: "dropdown-item" do
+                | Log out
