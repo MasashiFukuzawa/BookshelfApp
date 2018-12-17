@@ -1,8 +1,0 @@
-{
-  "files.associations": {
-    "*.erb": "erb"
-},
-"emmet.includeLanguages": {
-    "erb": "html"
-}
-}

@@ -1,15 +1,14 @@
 doctype html
 html lang="ja"
   head
-    title == full_title(yield(:title))
-    == csrf_meta_tags
-    == csp_meta_tag
-    == stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    == javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    == render 'layouts/shim'
+    title = full_title(yield(:title))
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = render 'layouts/shim'
   body
-    == render 'layouts/header'
-    / メイン
+    = render 'layouts/header'
     main
-      == yield
-      == render 'layouts/footer'
+      = yield
+      = render 'layouts/footer'
