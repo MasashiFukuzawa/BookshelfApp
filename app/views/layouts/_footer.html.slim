@@ -1,14 +1,10 @@
 footer.py-1.bg-dark
   .container.text-center
     ul.nav.justify-content-center.mb-3
-      li.navbar-item
-        = link_to "Home", root_path, class: "nav-link text-light"
-      li.navbar-item
-        = link_to "About", about_path, class: "nav-link text-light"
-      li.navbar-item
-        = link_to "Help", help_path, class: "nav-link text-light"
-      li.navbar-item
-        = link_to "Contact", contact_path, class: "nav-link text-light"
-    p.
+      li.navbar-item = link_to "Home", root_path, class: "nav-link text-light"
+      li.navbar-item = link_to "About", about_path, class: "nav-link text-light"
+      li.navbar-item = link_to "Help", help_path, class: "nav-link text-light"
+      li.navbar-item = link_to "Contact", contact_path, class: "nav-link text-light"
+    p
       small.text-light
         | Copyright &copy; Masashi Fukuzawa, All Rights Reserved.
