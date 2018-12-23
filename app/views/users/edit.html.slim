@@ -1,8 +1,8 @@
-= provide(:title, "Sign up")
-h1.text-center.my-3 Sign up
+= provide(:title, "Edit user")
+h1.text-center.my-3 Update your profile
 .row
   .col-md-6.col-md-offset-3.mx-auto.d-block
-    = form_for @user, url: signup_path do |f|
+    = form_for @user, url: edit_user_path do |f|
       = render 'shared/error_messages'
       = f.label :name
       = f.text_field :name, class: "form-control"
@@ -12,4 +12,7 @@ h1.text-center.my-3 Sign up
       = f.password_field :password, class: "form-control"
       = f.label :password_confirmation, "Confirmation"
       = f.password_field :password_confirmation, class: "form-control"
-      = f.submit "Create mt account", class: "btn btn-primary btn-lg mt-3 mb-5"
+      = f.submit "Save changes", class: "btn btn-primary btn-lg my-3"
+    .container.w-25.d-block.mx-auto.mb-4.text-center
+      = gravatar_for @user
+      = link_to "change", "https://gravatar.com/emails", target: "_blank", rel: "noopener"

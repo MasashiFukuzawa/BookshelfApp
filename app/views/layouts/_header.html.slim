@@ -1,20 +1,24 @@
 header.py-2
-  nav.navbar.navbar-dark.bg-dark.navbar-expand-md.sticky-top
+  nav.navbar.navbar-dark.bg-dark.navbar-expand-md
     .container
       = link_to "Bookshelf App", root_path, class: "navbar-brand" 
       button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbar-content" 
         span.navbar-toggler-icon
       .collapse.navbar-collapse#navbar-content
         ul.navbar-nav.ml-5.mr-auto
-          li.navbar-item.active = link_to "Home", root_path, class: "nav-link"
-          li.navbar-item = link_to "About", about_path, class: "nav-link"
-          li.navbar-item = link_to "Users", '#', class: "nav-link"
-        ul.navbar-nav.text-light.ml-5
-          li.navbar-item = link_to "Sign up", signup_path, class: "nav-link"
-          li.navbar-item = link_to "Log in", '#', class: "nav-link"
-          li.navbar-item.dropdown
-            = link_to "Account", '#', 'data-toggle': 'dropdown', class: "nav-link dropdown-toggle"
-            .dropdown-menu
-              = link_to "Profile", '#', class: "dropdown-item"
-              = link_to "Setting", '#', class: "dropdown-item"
-              = link_to "Log out", '#', class: "dropdown-item"
+          li.navbar-item.mr-4.active = link_to "Home", root_path, class: "nav-link"
+          li.navbar-item.mr-4 = link_to "About", about_path, class: "nav-link"
+          - if logged_in?
+            li.navbar-item = link_to "Users", '#', class: "nav-link"
+        - if logged_in?
+          ul.navbar-nav.text-light.ml-5
+            li.navbar-item.dropdown
+              = link_to "Account", '#', 'data-toggle': 'dropdown', class: "nav-link dropdown-toggle"
+              .dropdown-menu
+                = link_to "Profile", user_path(current_user), class: "dropdown-item"
+                = link_to "Setting", edit_user_path(current_user), class: "dropdown-item"
+                = link_to "Log out", logout_path, method: :delete, class: "dropdown-item"
+        - else
+          ul.navbar-nav.text-light.ml-5
+            li.navbar-item.mr-4 = link_to "Sign up", signup_path, class: "nav-link"
+            li.navbar-item = link_to "Log in", login_path, class: "nav-link"
