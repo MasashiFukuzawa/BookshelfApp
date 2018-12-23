@@ -2,7 +2,7 @@
 h1.text-center.my-3 Update your profile
 .row
   .col-md-6.col-md-offset-3.mx-auto.d-block
-    = form_for @user, url: edit_user_path do |f|
+    = form_for @user, url: user_path do |f|
       = render 'shared/error_messages'
       = f.label :name
       = f.text_field :name, class: "form-control"
@@ -12,7 +12,7 @@ h1.text-center.my-3 Update your profile
       = f.password_field :password, class: "form-control"
       = f.label :password_confirmation, "Confirmation"
       = f.password_field :password_confirmation, class: "form-control"
+      p.mb-2 Profile image
+      = gravatar_for @user, size: 80
+      = link_to "change", "https://gravatar.com/emails", target: "_blank", rel: "noopener", class: "ml-3 align-center"
       = f.submit "Save changes", class: "btn btn-primary btn-lg my-3"
-    .container.w-25.d-block.mx-auto.mb-4.text-center
-      = gravatar_for @user
-      = link_to "change", "https://gravatar.com/emails", target: "_blank", rel: "noopener"

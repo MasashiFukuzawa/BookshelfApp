@@ -2,8 +2,9 @@
 section.py-2
 .container.py-3
   .row
-    .card.mx-auto.text-center
-      = gravatar_for @user, size: 80
+    .card.mx-auto.text-center.bg-light
+      .img-fluid.mt-4
+        = gravatar_for @user, size: 80
       .card-body
         h4.card-title = @user.name
         p.card-subtitle
