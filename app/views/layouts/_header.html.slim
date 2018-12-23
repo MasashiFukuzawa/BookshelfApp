@@ -16,7 +16,7 @@ header.py-2
               = link_to "Account", '#', 'data-toggle': 'dropdown', class: "nav-link dropdown-toggle"
               .dropdown-menu
                 = link_to "Profile", user_path(current_user), class: "dropdown-item"
-                = link_to "Setting", '#', class: "dropdown-item"
+                = link_to "Setting", edit_user_path(current_user), class: "dropdown-item"
                 = link_to "Log out", logout_path, method: :delete, class: "dropdown-item"
         - else
           ul.navbar-nav.text-light.ml-5
