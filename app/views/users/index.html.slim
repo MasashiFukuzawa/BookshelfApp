@@ -4,7 +4,7 @@ h1.text-center.mt-3 All users
 ul.container
   .my-4
   - @users.each do |user|
-    li.list-unstyled.border-bottom.border-secondary.mb-3.pb-3
+    li.list-unstyled.border-top.border-secondary.mb-3.pb-3
       = gravatar_for user, size: 50
       = link_to user.name, user, class: "ml-3"
       - if current_user.admin? && !current_user?(user)

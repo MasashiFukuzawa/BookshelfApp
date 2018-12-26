@@ -1,66 +1,21 @@
 = provide(:title, @user.name)
-section.py-2
-.container.py-3
-  .row
-    .card.mx-auto.text-center.bg-light
-      .img-fluid.mt-4
-        = gravatar_for @user, size: 80
-      .card-body
-        h4.card-title = @user.name
-        p.card-subtitle
-          | 登録冊数：10冊
-          br
-          | フォロー50人 フォロワー50人
-        button.btn.btn-primary.mt-2 フォローする
-section.py-2
-  .container
-section.py-2
-  .container.text-center
-    .row
-      .col
-        h2.bg-primary
-          | Book
-          br
-          | Evaluation
-    .row
-      .col
-        h2.bg-secondary
-          | Book
-          br
-          | Evaluation
-    .row
-      .col
-        h2.bg-success
-          | Book
-          br
-          | Evaluation
-    .row
-      .col
-        h2.bg-danger
-          | Book
-          br
-          | Evaluation
-    .row
-      .col
-        h2.bg-warning
-          | Book
-          br
-          | Evaluation
-    .row
-      .col
-        h2.bg-info
-          | Book
-          br
-          | Evaluation
-    .row
-      .col
-        h2.bg-light
-          | Book
-          br
-          | Evaluation
-    .row
-      .col
-        h2.bg-dark
-          | Book
-          br
-          | Evaluation
+section.py-2.row
+  .card.mx-auto.text-center.bg-light
+    .img-fluid.mt-4
+      = gravatar_for @user, size: 80
+    .card-body
+      h4.card-title = @user.name
+      p.card-subtitle
+        | Number of Books：#{@user.books.count}
+        br
+        | Follow: 50 / Follower: 50
+      button.btn.btn-primary.mt-2 Follow
+.col-md-8.d-block.mx-auto
+  - if @user.books.any?
+      .container
+        h4.py-4.mt-2.text-center #{@user.name}'s Bookshelf
+        = link_to "Add new books!", new_book_path, class: "btn btn-info mb-5 d-block mx-auto w-50"
+        ol class="books"
+          = render @books
+        = link_to "Add new books!", new_book_path, class: "btn btn-info mb-5 d-block mx-auto w-50"
+        = will_paginate @books

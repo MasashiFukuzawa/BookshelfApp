@@ -1,0 +1,11 @@
+= provide(:title, "New book")
+h1.text-center.my-3 New book
+.row
+  .col-md-6.col-md-offset-3.mx-auto.d-block
+    = form_for books_path do |f|
+      = render 'shared/error_messages', object: f.object
+      = f.label :title
+      = f.text_field :title, placeholder: "Book title", class: "form-control"
+      = f.label :content
+      = f.text_area :content, placeholder: "Please write your comments", class: "form-control pb-5"
+      = f.submit "Submit", class: "btn btn-info btn-lg my-3"

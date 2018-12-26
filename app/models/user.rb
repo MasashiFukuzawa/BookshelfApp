@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :books, dependent: :destroy
+
   before_save   :downcase_email
   before_create :create_activation_digest
   
