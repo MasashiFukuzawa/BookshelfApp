@@ -2,4 +2,13 @@ li.list-unstyled.border-top.border-secondary
   h4.mt-3.ml-4 = link_to book.title, "https://www.amazon.co.jp/%E6%9C%AC-%E9%80%9A%E8%B2%A9/b/ref=sd_allcat_jb?ie=UTF8&node=465392", class: "text-dark"
   = image_tag("book-initial.jpg", class: "img-fluid w-50 mx-auto d-block py-4")
   h5.mt-3.ml-4.font-weight-normal #{book.content}
-  p.text-right.mr-4.mt-5 Posted #{time_ago_in_words(book.created_at)} ago.
+  p.mt-5.text-right
+    span Posted by 
+    = link_to book.user.name, user_path(book.user), class: "mr-2"
+    span.mr-2 |
+    span.mr-2 #{time_ago_in_words(book.created_at)} ago.
+    - if current_user?(book.user)
+      span.mr-2 |
+      span.mr-2 = link_to "Edit", edit_book_path(book)
+      span.mr-2 |
+      span = link_to "Delete", book, method: :delete, data: {confirm: "You sure?"}

@@ -1,0 +1,11 @@
+= provide(:title, "Edit book")
+h1.text-center.my-3 Edit book
+.row
+  .col-md-6.col-md-offset-3.mx-auto.d-block
+    = form_for @book do |f|
+      = render 'shared/error_messages', object: f.object
+      = f.label :title
+      = f.text_field :title, class: "form-control"
+      = f.label :content
+      = f.text_area :content, class: "form-control pb-5"
+      = f.submit "Edit", class: "btn btn-info btn-lg my-3"

@@ -77,7 +77,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "associated books should be destroyed" do
     @user.save
-    @user.books.create!(content: "Lorem ipsum")
+    @user.books.create!(title: "Ruby on Rails", content: "Lorem ipsum")
     assert_difference 'Book.count', -1 do
       @user.destroy
     end

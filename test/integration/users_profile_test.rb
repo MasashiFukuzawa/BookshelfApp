@@ -5,13 +5,49 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:michael)
+    @other_user = users(:archer)
   end
   
-  test "profile display" do
+  test "my profile display" do
+    log_in_as(@user)
     get user_path(@user)
     assert_template 'users/show'
     assert_select 'title', full_title(@user.name)
-    assert_select 'div.container>a', 'Add new books!', count: 2
+    assert_no_match 'div.card-body>a', 'Follow'
+    assert_select 'div.card-body>a', 'Add new books'
+    assert_select 'p>span a', 'Edit'
+    assert_select 'p>span a', 'Delete'
+    assert_select 'li>img'
+    assert_match @user.books.count.to_s, response.body
+    assert_select 'div.pagination', count: 1
+    @user.books.paginate(page: 1) do |book|
+      assert_match book.title, response.body
+      assert_match book.content, response.body
+      assert_match book.created_at, response.body
+    end
+    get root_path
+    assert_template 'static_pages/home'
+    assert_select 'title', full_title("")
+    assert_select 'div.card-body>span a', 'View my profile'
+    assert_select 'div.card-body>span a', 'Add new books'
+    assert_select 'li>img'
+    assert_select 'div.pagination', count: 1
+    @user.books.paginate(page: 1) do |book|
+      assert_match book.title, response.body
+      assert_match book.content, response.body
+      assert_match book.created_at, response.body
+    end
+  end
+
+  test "other user's profile display" do
+    log_in_as(@other_user)
+    get user_path(@user)
+    assert_template 'users/show'
+    assert_select 'title', full_title(@user.name)
+    assert_select 'div.card-body>a', 'Follow'
+    assert_no_match 'div.card-body>a', 'Add new books!'
+    assert_no_match 'p>span a', 'Edit'
+    assert_no_match 'p>span a', 'Delete'
     assert_select 'li>img'
     assert_match @user.books.count.to_s, response.body
     assert_select 'div.pagination', count: 1

@@ -34,12 +34,30 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_url
   end
   
+  test "should not allow the other user to be edited via the web" do
+    log_in_as(@user)
+    book = books(:ants)
+    assert_no_difference 'Book.count' do
+      patch user_path(users(:archer)), params: {
+      book: {title: "Ruby on Rails",
+            content: "This book is not good for me."}}
+    end
+    assert_redirected_to root_url
+  end
+
   test "should redirect destroy when not logged in" do
     assert_no_difference "Book.count" do
-      assert_no_difference 'Book.count' do
-        delete book_path(@user)
-      end
-      assert_redirected_to login_url
+      delete book_path(@book)
     end
+    assert_redirected_to login_url
+  end
+
+  test "should redirect destroy for wrong book" do
+    log_in_as(@user)
+    book = books(:ants)
+    assert_no_difference 'Book.count' do
+      delete book_path(book)
+    end
+    assert_redirected_to root_url
   end
 end

@@ -10,42 +10,42 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
   test "password reset" do
     get new_password_reset_path
     assert_template 'password_resets/new'
-    # メールアドレスが無効な場合
+
     post password_resets_path(@user), params: {password_reset: {email: ""}}
     assert_not flash.empty?
     assert_template 'password_resets/new'
-    # メールアドレスが有効な場合
+
     post password_resets_path(@user), params: {password_reset: {email: @user.email}}
     assert_not_equal @user.reset_digest, @user.reload.reset_digest
     assert_equal 1, ActionMailer::Base.deliveries.size
     assert_not flash.empty?
     assert_redirected_to root_url
-    # パスワード再設定フォームのテスト
+
     user = assigns(:user)
-    # メールアドレスが無効な場合
+
     get edit_password_reset_path(user.reset_token, email: "")
     assert_redirected_to root_url
-    # 無効なユーザー
+
     user.toggle!(:activated)
     get edit_password_reset_path(user.reset_token, email: user.email)
     assert_redirected_to root_url
     user.toggle!(:activated)
-    # メールアドレスが有効、トークンが無効
+
     get edit_password_reset_path('wrong token', email: user.email)
     assert_redirected_to root_url
-    # メールアドレスもトークンも有効
+
     get edit_password_reset_path(user.reset_token, email: user.email)
     assert_template 'password_resets/edit'
     assert_select "input[name=email][type=hidden][value=?]", user.email
-    # 無効なパスワードとパスワード確認
+
     patch password_reset_path(user.reset_token), params: {email: user.email,
           user: {password: "foobar", password_confirmation: "foobaz"}}
     assert_select '.alert'
-    # パスワードが空
+
     patch password_reset_path(user.reset_token), params: {email: user.email, 
           user: {password: "", password_confirmation: ""}}
     assert_select '.alert'
-    # 有効なパスワードとパスワード確認
+    
     patch password_reset_path(user.reset_token), params: {email: user.email, 
           user: {password: "foobar", password_confirmation: "foobar"}}
     assert is_logged_in?

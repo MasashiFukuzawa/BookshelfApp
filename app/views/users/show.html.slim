@@ -1,6 +1,6 @@
 = provide(:title, @user.name)
-section.py-2.row
-  .card.mx-auto.text-center.bg-light
+.py-2.w-25.mx-auto
+  .card.text-center.bg-light
     .img-fluid.mt-4
       = gravatar_for @user, size: 80
     .card-body
@@ -9,13 +9,13 @@ section.py-2.row
         | Number of Books：#{@user.books.count}
         br
         | Follow: 50 / Follower: 50
-      button.btn.btn-primary.mt-2 Follow
+      - if !current_user?(@user)
+        = link_to "Follow", "#", class: "btn btn-primary mt-2 w-75"
+      - elsif current_user?(@user)
+        = link_to "Add new books", new_book_path, class: "btn btn-info mt-2 w-75"
 .col-md-8.d-block.mx-auto
   - if @user.books.any?
       .container
         h4.py-4.mt-2.text-center #{@user.name}'s Bookshelf
-        = link_to "Add new books!", new_book_path, class: "btn btn-info mb-5 d-block mx-auto w-50"
-        ol class="books"
-          = render @books
-        = link_to "Add new books!", new_book_path, class: "btn btn-info mb-5 d-block mx-auto w-50"
+        ol = render @books
         = will_paginate @books
