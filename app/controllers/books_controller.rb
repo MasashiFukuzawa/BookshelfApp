@@ -24,7 +24,7 @@ class BooksController < ApplicationController
   def update
     @book = Book.find_by(id: params[:id])
     if @book.update_attributes(books_params)
-      flash[:success] = "Content updated"
+      flash[:success] = "Successfully updated"
       redirect_to root_url
     else
       render 'edit'
@@ -40,7 +40,7 @@ class BooksController < ApplicationController
   private
 
     def books_params
-      params.require(:book).permit(:title, :content)
+      params.require(:book).permit(:title, :content, :picture)
     end
 
     def correct_user

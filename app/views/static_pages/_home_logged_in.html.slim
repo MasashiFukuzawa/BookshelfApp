@@ -5,7 +5,7 @@
     .card-body
       h4.card-title = current_user.name
       p.card-subtitle.mb-3
-        | Number of Books：#{current_user.books.count}
+        | Number of Books: #{current_user.books.count}
         br
         | Follow: 50 / Follower: 50
       span.mr-4 = link_to "View my profile", user_path(current_user), class: "mx-auto btn btn-primary mr-4"

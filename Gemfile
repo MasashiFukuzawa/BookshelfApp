@@ -8,6 +8,8 @@ gem 'email_validator'
 gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'carrierwave'
+gem 'mini_magick'
 gem 'bootstrap', '~> 4.1.3'
 gem 'slim-rails'
 gem 'puma', '~> 3.11'
@@ -41,6 +43,7 @@ end
 
 group :production do
   gem 'pg'
+  gem 'fog'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

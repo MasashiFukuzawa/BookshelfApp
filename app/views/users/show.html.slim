@@ -6,7 +6,7 @@
     .card-body
       h4.card-title = @user.name
       p.card-subtitle
-        | Number of Books：#{@user.books.count}
+        | Number of Books: #{@user.books.count}
         br
         | Follow: 50 / Follower: 50
       - if !current_user?(@user)

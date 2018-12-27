@@ -1,6 +1,9 @@
 li.list-unstyled.border-top.border-secondary
   h4.mt-3.ml-4 = link_to book.title, "https://www.amazon.co.jp/%E6%9C%AC-%E9%80%9A%E8%B2%A9/b/ref=sd_allcat_jb?ie=UTF8&node=465392", class: "text-dark"
-  = image_tag("book-initial.jpg", class: "img-fluid w-50 mx-auto d-block py-4")
+  - if book.picture?
+    = image_tag(book.picture.url, class: "img-fluid w-50 mx-auto d-block py-4")
+  - else
+    = image_tag("book-initial.jpg", class: "img-fluid w-50 mx-auto d-block py-4")
   h5.mt-3.ml-4.font-weight-normal #{book.content}
   p.mt-5.text-right
     span Posted by 
