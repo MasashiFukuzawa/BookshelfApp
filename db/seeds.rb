@@ -22,5 +22,13 @@ users = User.order(:created_at).take(6)
 50.times do
   content = Faker::Lorem.paragraph(10)
   title = Faker::Book.title
-  users.each {|user| user.books.create!(content: content, title: title)}
+  picture = Faker::Avatar.image
+  users.each {|user| user.books.create!(content: content, title: title, picture: picture)}
 end
+
+users = User.all
+user = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each {|followed| user.follow(followed)}
+followers.each {|follower| follower.follow(user)}

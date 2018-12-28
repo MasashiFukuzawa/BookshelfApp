@@ -4,12 +4,11 @@
       = gravatar_for current_user, size: 80
     .card-body
       h4.card-title = current_user.name
-      p.card-subtitle.mb-3
-        | Number of Books: #{current_user.books.count}
-        br
-        | Follow: 50 / Follower: 50
-      span.mr-4 = link_to "View my profile", user_path(current_user), class: "mx-auto btn btn-primary mr-4"
-      span = link_to "Add new books", new_book_path, class: "mx-auto btn btn-info"
+      p.card-subtitle.mt-2 Number of Books: #{current_user.books.count}
+      = render 'shared/status'
+      .mt-2
+        span.mr-4 = link_to "View my profile", user_path(current_user), class: "mx-auto btn btn-primary mr-4"
+        span = link_to "Add new books", new_book_path, class: "mx-auto btn btn-info"
 section.col-md-8.d-block.mx-auto
   - if @feed_items.any?
       .container

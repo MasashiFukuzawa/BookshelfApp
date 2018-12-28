@@ -14,9 +14,10 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     assert_template 'users/show'
     assert_select 'title', full_title(@user.name)
     assert_no_match 'div.card-body>a', 'Follow'
-    assert_select 'div.card-body>a', 'Add new books'
-    assert_select 'p>span a', 'Edit'
-    assert_select 'p>span a', 'Delete'
+    assert_no_match 'div.card-body>a', 'Unfollow'
+    assert_select 'a', text: 'Add new books'
+    assert_select 'a', text: 'Edit'
+    assert_select 'a', text: 'Delete'
     assert_select 'li>img'
     assert_match @user.books.count.to_s, response.body
     assert_select 'div.pagination', count: 1
@@ -28,8 +29,8 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     get root_path
     assert_template 'static_pages/home'
     assert_select 'title', full_title("")
-    assert_select 'div.card-body>span a', 'View my profile'
-    assert_select 'div.card-body>span a', 'Add new books'
+    assert_select 'a', text: 'View my profile'
+    assert_select 'a', text: 'Add new books'
     assert_select 'li>img'
     assert_select 'div.pagination', count: 1
     @user.books.paginate(page: 1) do |book|
@@ -44,8 +45,7 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     get user_path(@user)
     assert_template 'users/show'
     assert_select 'title', full_title(@user.name)
-    assert_select 'div.card-body>a', 'Follow'
-    assert_no_match 'div.card-body>a', 'Add new books!'
+    assert_no_match 'div.card-body>a', 'Add new books'
     assert_no_match 'p>span a', 'Edit'
     assert_no_match 'p>span a', 'Delete'
     assert_select 'li>img'

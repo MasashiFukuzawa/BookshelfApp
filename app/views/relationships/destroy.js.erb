@@ -1,0 +1,2 @@
+$("#follow_form").html("<%= escape_javascript(render('users/follow')) %>");
+$("#followers").html('<%= link_to "Followers: #{@user.followers.count}", following_user_path(@user), class: "nav-link" %>');

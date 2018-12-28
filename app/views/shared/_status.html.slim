@@ -1,0 +1,3 @@
+- if @user ||= current_user
+  = link_to "Following: #{@user.following.count}", following_user_path(@user), class: "d-inline-block nav-link"
+  #followers.d-inline-block = link_to "Followers: #{@user.followers.count}", followers_user_path(@user), class: "nav-link"

@@ -7,7 +7,7 @@ h1.text-center.my-3 New book
       = f.label :title
       = f.text_field :title, placeholder: "Book title", class: "form-control"
       = f.label :content
-      = f.text_area :content, placeholder: "Please write your comments", class: "form-control pb-5"
+      = f.text_area :content, placeholder: "Please write your comments in 800 words", class: "form-control pb-5"
       p Book image ( not necessarily )
       = f.file_field :picture, accept: 'image/jpg, image/gif, image/png', class:"rounded"
       = f.submit "Post", class: "btn btn-info btn-lg my-3"
