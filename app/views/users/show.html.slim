@@ -2,7 +2,7 @@
 .py-2.w-25.mx-auto
   .card.text-center.bg-light
     .img-fluid.mt-4
-      = gravatar_for @user, size: 80
+      = gravatar_for @user
     .card-body
       h4.card-title = @user.name
       p.card-subtitle.mt-2 Number of Books: #{@user.books.count}
@@ -20,4 +20,4 @@
       .container
         h4.py-4.mt-2.text-center #{@user.name}'s Bookshelf
         ol = render @books
-        = will_paginate @books
+        = paginate @books, theme: 'twitter-bootstrap-4'

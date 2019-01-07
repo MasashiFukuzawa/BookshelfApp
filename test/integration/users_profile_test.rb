@@ -20,8 +20,8 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     assert_select 'a', text: 'Delete'
     assert_select 'li>img'
     assert_match @user.books.count.to_s, response.body
-    assert_select 'div.pagination', count: 1
-    @user.books.paginate(page: 1) do |book|
+    assert_select 'ul.pagination', count: 1
+    @user.books.page(1).per(5) do |book|
       assert_match book.title, response.body
       assert_match book.content, response.body
       assert_match book.created_at, response.body
@@ -32,8 +32,8 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     assert_select 'a', text: 'View my profile'
     assert_select 'a', text: 'Add new books'
     assert_select 'li>img'
-    assert_select 'div.pagination', count: 1
-    @user.books.paginate(page: 1) do |book|
+    assert_select 'ul.pagination', count: 1
+    @user.books.page(1).per(5) do |book|
       assert_match book.title, response.body
       assert_match book.content, response.body
       assert_match book.created_at, response.body
@@ -50,8 +50,8 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     assert_no_match 'p>span a', 'Delete'
     assert_select 'li>img'
     assert_match @user.books.count.to_s, response.body
-    assert_select 'div.pagination', count: 1
-    @user.books.paginate(page: 1) do |book|
+    assert_select 'ul.pagination', count: 1
+    @user.books.page(1).per(5) do |book|
       assert_match book.title, response.body
       assert_match book.content, response.body
       assert_match book.created_at, response.body

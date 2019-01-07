@@ -2,7 +2,7 @@
 .py-2.w-25.mx-auto
   .card.text-center.bg-light
     .img-fluid.mt-4
-      = gravatar_for @user, size: 80
+      = gravatar_for @user
     .card-body
       h4.card-title = @user.name
       p.card-subtitle.mt-2 Number of Books: #{@user.books.count}
@@ -20,11 +20,11 @@
     h4.py-4.mt-2.text-center = @title
     - @users.each do |user|
       li.list-unstyled.border-top.border-secondary.mt-3.pt-3
-        = gravatar_for user, size: 100
+        = gravatar_for user
         h5.font-weight-normal.d-inline-block = link_to user.name, user, class: "ml-3"
         - if current_user.admin? && !current_user?(user)
           h5.font-weight-normal.d-inline-block.mx-2 |
           h5.font-weight-normal.d-inline-block
             = link_to "delete", user, method: :delete, data: {confirm: "You sure?"}
     .my-4
-  = will_paginate
+  = paginate @users, theme: 'twitter-bootstrap-4'

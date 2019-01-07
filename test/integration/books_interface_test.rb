@@ -9,7 +9,7 @@ class BooksInterfaceTest < ActionDispatch::IntegrationTest
   test "book interface" do
     log_in_as @user
     get root_path
-    assert_select 'div.pagination'
+    assert_select 'ul.pagination'
     
     get new_book_path
     assert_select 'input[type=file]'
@@ -32,7 +32,7 @@ class BooksInterfaceTest < ActionDispatch::IntegrationTest
     
     title = "Ruby"
     content = "Ruby on Rails"
-    first_book = @user.books.paginate(page: 1).first
+    first_book = @user.books.page(1).per(5).first
     assert_select 'a', text: "Edit"
     get edit_book_path(first_book)
     assert_select 'input[type=file]'
@@ -53,7 +53,7 @@ class BooksInterfaceTest < ActionDispatch::IntegrationTest
     assert_no_match content, response.body
     
     other_user = users(:archer)
-    other_book = other_user.books.paginate(page: 1).first
+    other_book = other_user.books.page(1).per(5).first
     get user_path(other_user)
     assert_select 'a', text: "Edit", count: 0
     get edit_book_path(other_book)

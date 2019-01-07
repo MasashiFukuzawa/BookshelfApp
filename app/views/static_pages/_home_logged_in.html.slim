@@ -1,7 +1,7 @@
 .py-2.w-25.mx-auto
   .card.text-center.bg-light
     .img-fluid.mt-4
-      = gravatar_for current_user, size: 80
+      = gravatar_for current_user
     .card-body
       h4.card-title = current_user.name
       p.card-subtitle.mt-2 Number of Books: #{current_user.books.count}
@@ -14,4 +14,4 @@ section.col-md-8.d-block.mx-auto
       .container
         h4.py-4.mt-2.text-center Book Feed
         ol  = render @feed_items
-        = will_paginate @feed_items
+        = paginate @feed_items, theme: 'twitter-bootstrap-4'

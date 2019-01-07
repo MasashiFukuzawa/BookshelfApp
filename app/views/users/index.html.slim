@@ -1,15 +1,12 @@
 = provide(:title, "All users")
 h1.text-center.mt-3 All users
-= will_paginate
 ul.container
-  .my-4
   - @users.each do |user|
     li.list-unstyled.border-bottom.border-secondary.mb-3.pb-3
-      = gravatar_for user, size: 100
+      = gravatar_for user
       h5.font-weight-normal.d-inline-block = link_to user.name, user, class: "ml-3"
       - if current_user.admin? && !current_user?(user)
         h5.font-weight-normal.d-inline-block.mx-2 |
         h5.font-weight-normal.d-inline-block
           = link_to "delete", user, method: :delete, data: {confirm: "You sure?"}
-  .my-4
-= will_paginate
+  .my-4 = paginate @users, theme: 'twitter-bootstrap-4'
