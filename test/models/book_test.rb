@@ -38,6 +38,6 @@ class BookTest < ActiveSupport::TestCase
   end
 
   test "order should be most recent first" do
-    assert_equal books(:most_recent), Book.first
+    assert_equal books(:most_recent), Book.desc.first
   end
 end
