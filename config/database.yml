@@ -22,4 +22,4 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: postgres://tazufuqmgiqobm:2ede835b0259bb89ecada741d5705a34213b27e0296f0fb229ab3025ba2f7bf1@ec2-23-23-235-86.compute-1.amazonaws.com:5432/d3ivoeo46i5ghl
