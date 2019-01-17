@@ -4,7 +4,7 @@ li.list-unstyled.border-top.border-secondary
     = image_tag(book.picture.url, class: "img-fluid w-50 mx-auto d-block py-4")
   - else
     = image_tag("book-initial.jpg", class: "img-fluid w-50 mx-auto d-block py-4")
-  h5.mt-3.ml-4.font-weight-normal #{book.content}
+  h5.mt-3.ml-4.font-weight-normal = simple_format(book.content)
   p.mt-5.text-right
     span Posted by 
     = link_to book.user.name, user_path(book.user), class: "mr-2"
