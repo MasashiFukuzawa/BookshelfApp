@@ -1,11 +1,6 @@
+※(2021.1.17) Herokuへのアクセスを停止しました。
+
 # BookshelfAppについて
-
-## URL
-https://frozen-mesa-97749.herokuapp.com/
-
-## テストユーザー
-- メールアドレス:example@railstutorial.org
-- パスワード:foobar
 
 ## コンセプト
 - Railsチュートリアルで学んだ知識を定着、深化させるために制作
